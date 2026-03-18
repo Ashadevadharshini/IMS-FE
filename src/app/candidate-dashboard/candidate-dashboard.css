@@ -1,0 +1,192 @@
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:'Segoe UI', Arial, sans-serif;
+}
+
+/* PAGE BACKGROUND */
+
+.page-container{
+  min-height:100vh;
+  background:#f4f6fb;
+  display:flex;
+  flex-direction:column;
+}
+
+/* HEADER */
+
+.top-header{
+  background:linear-gradient(135deg,#5a4bff,#7a6bff);
+  color:white;
+  padding:20px 40px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+.company{
+  font-size:18px;
+  font-weight:600;
+}
+
+.job-info h3{
+  margin-top:6px;
+  font-size:20px;
+}
+
+.job-info p{
+  font-size:14px;
+  opacity:0.9;
+}
+
+/* MAIN CARD */
+
+.candidate-container{
+  max-width:1000px;
+  width: 70%;
+  margin:40px auto;
+  background:white;
+  padding:40px;
+  border-radius:10px;
+  box-shadow:0 4px 20px rgba(0,0,0,0.08);
+}
+
+/* TITLE */
+
+.candidate-container h2{
+  font-size:26px;
+  margin-bottom:8px;
+}
+
+.info{
+  color:#666;
+  margin-bottom:30px;
+}
+
+/* SLOT ROW */
+
+.slot-row{
+  display:flex;
+  gap:25px;
+  margin-bottom:22px;
+}
+
+/* SLOT BOX */
+
+.slot-box{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+}
+
+/* LABEL */
+
+label{
+  font-size:14px;
+  font-weight:600;
+  margin-bottom:6px;
+}
+
+/* INPUT STYLE */
+
+input,
+select{
+  padding:12px;
+  border-radius:8px;
+  border:1px solid #dcdcdc;
+  font-size:14px;
+  transition:all 0.25s ease;
+  background:#fafafa;
+}
+
+input:focus,
+select:focus{
+  outline:none;
+  border-color:#6b5cff;
+  background:white;
+  box-shadow:0 0 6px rgba(107,92,255,0.2);
+}
+
+/* BOTTOM BAR */
+
+.bottom-bar{
+  position:fixed;
+  bottom:0;
+  left:0;
+  width:100%;
+  background:white;
+  border-top:1px solid #eee;
+  padding:18px 40px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  box-shadow:0 -2px 8px rgba(0,0,0,0.05);
+}
+
+/* SLOT COUNT */
+
+.slot-count{
+  font-size:15px;
+  color:#444;
+}
+
+/* BUTTONS */
+
+.button-area{
+  display:flex;
+  gap:12px;
+}
+.actions{
+    display: flex;
+    gap: 10px;
+}
+
+button{
+  padding:10px 22px;
+  border-radius:8px;
+  border:none;
+  cursor:pointer;
+  font-size:14px;
+  transition:0.2s;
+}
+
+/* RESET */
+
+button.reset{
+  background:#e9e9e9;
+}
+
+button.reset:hover{
+  background:#dcdcdc;
+}
+
+/* SUBMIT */
+
+button.submit{
+  background:#6b5cff;
+  color:white;
+}
+
+button.submit:hover{
+  background:#5546f0;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+  .candidate-container{
+    margin:20px;
+    padding:25px;
+  }
+
+  .slot-row{
+    flex-direction:column;
+  }
+
+  .bottom-bar{
+    flex-direction:column;
+    gap:10px;
+    align-items:flex-start;
+  }
+
+}

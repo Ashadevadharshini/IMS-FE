@@ -1,0 +1,87 @@
+<div class="page-container">
+  <!-- TOP HEADER -->
+  <div class="top-header">
+    <div class="company">IMS Portal</div>
+
+    <div class="job-info">
+      <h3>Software Engineer Interview</h3>
+      <p>Skill Interview</p>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+
+  <div class="candidate-container">
+    <h2>Request for three interview slots</h2>
+
+    <p class="info">Please select three available interview slots.</p>
+
+    <form [formGroup]="slotForm">
+      <!-- SLOT 1 -->
+      <div class="slot-row">
+        <div class="slot-box">
+          <label>Select interview date for slot one</label>
+          <input type="date" [min]="minDate" [max]="maxDate" formControlName="date1" />
+        </div>
+
+        <div class="slot-box">
+          <label>Select interview time for slot one</label>
+          <select formControlName="time1">
+            <option value="">Select time</option>
+            <option *ngFor="let slot of timeSlots" [value]="slot">
+              {{ slot }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <!-- SLOT 2 -->
+      <div class="slot-row">
+        <div class="slot-box">
+          <label>Select interview date for slot two</label>
+          <input type="date" [min]="minDate" [max]="maxDate" formControlName="date2" />
+        </div>
+
+        <div class="slot-box">
+          <label>Select interview time for slot two</label>
+          <select formControlName="time2">
+            <option value="">Select time</option>
+            <option *ngFor="let slot of timeSlots" [value]="slot">
+              {{ slot }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <!-- SLOT 3 -->
+      <div class="slot-row">
+        <div class="slot-box">
+          <label>Select interview date for slot three</label>
+          <input type="date" [min]="minDate" [max]="maxDate" formControlName="date3" />
+        </div>
+
+        <div class="slot-box">
+          <label>Select interview time for slot three</label>
+          <select formControlName="time3">
+            <option value="">Select time</option>
+            <option *ngFor="let slot of timeSlots" [value]="slot">
+              {{ slot }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- BOTTOM ACTION BAR -->
+
+  <div class="bottom-bar">
+    <div class="slot-count">Selected Slots: {{ selectedSlots() }} / 3</div>
+
+    <div class="actions">
+      <button class="reset" (click)="reset()">Reset</button>
+
+      <button class="submit">Submit</button>
+    </div>
+  </div>
+</div>

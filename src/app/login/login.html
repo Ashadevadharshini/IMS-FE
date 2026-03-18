@@ -1,0 +1,65 @@
+<div class="login-wrapper">
+
+  <div class="login-card">
+
+    <h2>Welcome Back</h2>
+    <p class="subtitle">Login to your account</p>
+
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+
+      <!-- Username -->
+      <div class="input-group">
+        <label>Email Id</label>
+
+        <input
+          type="email"
+          formControlName="email"
+          placeholder="Enter email">
+
+        <small class="error"
+        *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.errors?.['required']">
+          Username is required
+        </small>
+      </div>
+
+      <!-- Password -->
+      <div class="input-group">
+
+        <label>Password</label>
+
+        <div class="password-field">
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            formControlName="password"
+            placeholder="Enter password">
+
+          <span class="toggle" (click)="togglePassword()">
+            👁
+          </span>
+        </div>
+
+        <small class="error"
+        *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.errors?.['required']">
+          Password is required
+        </small>
+
+      </div>
+
+      <!-- Buttons -->
+      <div class="button-group">
+
+        <button type="submit" [disabled]="loginForm.invalid">
+          Login
+        </button>
+
+        <button type="button" class="reset-btn" (click)="loginForm.reset()">
+          Reset
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>

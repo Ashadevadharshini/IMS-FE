@@ -1,0 +1,43 @@
+<div class="layout">
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+
+    <h2 class="logo">Interview App</h2>
+
+    <ul>
+
+      <li *ngIf="role==='ADMIN'">
+        <a [routerLink]="['/admin']" routerLinkActive="active">Admin Dashboard</a>
+      </li>
+
+      <li *ngIf="role==='HR'">
+        <a [routerLink]="['/hr']" routerLinkActive="active">HR Dashboard</a>
+      </li>
+
+      <li *ngIf="role==='PANEL'">
+        <a [routerLink]="['/panel']" routerLinkActive="active">Panel Dashboard</a>
+      </li>
+
+      <li *ngIf="role==='ADMIN' || role==='HR'">
+        <a [routerLink]="['/candidate-list']" routerLinkActive="active">Candidates</a>
+      </li>
+
+      <li *ngIf="role==='ADMIN'">
+        <a [routerLink]="['/createUser']" routerLinkActive="active">Create User</a>
+      </li>
+
+      <li class="logout">
+        <a (click)="logout()">Logout</a>
+      </li>
+
+    </ul>
+
+  </div>
+
+  <!-- Content -->
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+
+</div>
