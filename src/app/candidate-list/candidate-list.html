@@ -1,0 +1,43 @@
+<div class="container">
+
+  <h2>Upload Candidate Excel</h2>
+
+  <input 
+    type="file" 
+    (change)="onFileChange($event)" 
+    accept=".xlsx, .xls" 
+  />
+
+  <p>Total Candidates: {{ candidates.length }}</p>
+
+<table *ngIf="candidates && candidates.length > 0">
+    <thead>
+      <tr>
+        <th>S.NO</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+        <th>Skill</th>
+        <th>Degree</th>
+        <th>Experience</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+
+    <tbody>
+  
+  <tr *ngFor="let c of candidates; let i = index">
+    <td>{{ i + 1 }}</td>
+    <td>{{ c.name }}</td>
+    <td>{{ c.email }}</td>
+    <td>{{ c.phone }}</td>
+    <td>{{ c.skill }}</td>
+    <td>{{ c.degree }}</td>
+    <td>{{ c.experience }}</td>
+    <td>{{ c.status }}</td>
+  </tr>
+</tbody>
+
+  </table>
+
+</div>

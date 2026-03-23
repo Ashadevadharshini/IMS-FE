@@ -5,16 +5,16 @@ export const roleGuard: CanActivateFn = (route) => {
 
   const router = inject(Router);
 
-  const role = localStorage.getItem('role');
-  const expectedRole = route.data?.['role'];
+  const userRole = localStorage.getItem('role'); // e.g. "HR"
 
-  console.log("ROLE:", role);
-  console.log("EXPECTED:", expectedRole);
+  const allowedRoles = route.data?.['roles'] as string[];
 
-  if (role?.includes(expectedRole)) {
+  console.log("USER ROLE:", userRole);
+  console.log("ALLOWED ROLES:", allowedRoles);
+
+  if (allowedRoles && allowedRoles.includes(userRole!)) {
     return true;
   }
 
-  router.navigate(['/unauthorized']);
-  return false;
+  return router.createUrlTree(['/unauthorized']);
 };

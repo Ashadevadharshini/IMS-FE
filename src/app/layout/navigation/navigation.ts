@@ -12,9 +12,15 @@ export class Navigation {
 
   constructor(private router: Router) {}
 
-  get role(): string | null {
-    return localStorage.getItem('role');
-  }
+ role: string | null = '';
+
+ngOnInit() {
+  this.role = localStorage.getItem('role');
+}
+
+hasRole(roles: string[]): boolean {
+  return roles.includes(this.role!);
+}
 
   logout(){
     localStorage.removeItem('token');
