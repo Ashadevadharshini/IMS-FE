@@ -12,7 +12,6 @@ import { CandidateList } from './candidate-list/candidate-list';
 
 export const routes: Routes = [
 
-  // Public Route
   { path: 'login', component: Login },
 
   {
@@ -29,36 +28,35 @@ export const routes: Routes = [
         path: 'admin', 
         component: AdminDashboard, 
         canActivate: [roleGuard], 
-        data: { role: 'ADMIN' } 
-      },
-
-      { 
-        path: 'candidate-list', 
-        component: AdminDashboard, 
-        canActivate: [roleGuard], 
-        data: { role: 'ADMIN' } 
+        data: { roles: ['ADMIN'] } 
       },
 
       { 
         path: 'hr', 
         component: HrDashboard, 
         canActivate: [roleGuard], 
-        data: { role: 'HR' } 
+        data: { roles: ['HR'] }
       },
 
+      {
+        path: 'candidate-list',
+        component: CandidateList,
+        canActivate: [roleGuard],
+        data: { roles: ['HR', 'ADMIN'] }
+      },
 
       { 
         path: 'candidate', 
         component: CandidateDashboard, 
         canActivate: [roleGuard], 
-        data: { role: 'CANDIDATE' } 
+        data: { roles: ['CANDIDATE'] }
       },
 
       { 
         path: 'createUser', 
         component: CreateUser, 
         canActivate: [roleGuard], 
-        data: { role: 'ADMIN' } 
+        data: { roles: ['ADMIN'] } 
       },
       { 
         path: 'candidateList', 
@@ -70,7 +68,6 @@ export const routes: Routes = [
     ]
   },
 
-  // Only keep this
   { path: '**', redirectTo: 'login' }
 
 ];
