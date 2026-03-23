@@ -8,6 +8,7 @@ import { Navigation } from './layout/navigation/navigation';
 import { Home } from './home/home';
 import { authGuard } from './guards/auth-guard';
 import { CreateUser } from './create-user/create-user';
+import { CandidateList } from './candidate-list/candidate-list';
 
 export const routes: Routes = [
 
@@ -58,6 +59,12 @@ export const routes: Routes = [
         component: CreateUser, 
         canActivate: [roleGuard], 
         data: { role: 'ADMIN' } 
+      },
+      { 
+        path: 'candidateList', 
+        component: CandidateList, 
+        canActivate: [roleGuard], 
+        data: { role: 'HR' } 
       },
 
     ]
