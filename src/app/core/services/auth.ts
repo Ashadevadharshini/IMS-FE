@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,13 @@ createUser(data: any) {
 saveUser(res: any) {
   localStorage.setItem('token', res.token);
   localStorage.setItem('role', res.role);
+}
+getUser(){
+  return this.http.get(`${this.baseUrl}/auth/me`, {
+    headers: {
+      Authorization: 'Bearer ' + localStorage.getItem('token')
+    }
+  });
 }
   getRole(){
     return localStorage.getItem('role');

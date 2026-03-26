@@ -1,43 +1,84 @@
 <div class="layout">
 
-  <!-- Sidebar -->
-  <div class="sidebar">
-
-    <h2 class="logo">Interview App</h2>
-
-    <ul>
-
-  <li *ngIf="hasRole(['ADMIN'])">
-  <a routerLink="/admin" routerLinkActive="active">Admin Dashboard</a>
-</li>
-
-<li *ngIf="hasRole(['HR'])">
-  <a routerLink="/hr" routerLinkActive="active">HR Dashboard</a>
-</li>
-
-<li *ngIf="hasRole(['PANEL'])">
-  <a routerLink="/panel" routerLinkActive="active">Panel Dashboard</a>
-</li>
-
-<li *ngIf="hasRole(['ADMIN','HR'])">
-  <a routerLink="/candidate-list" routerLinkActive="active">Candidate List</a>
-</li>
-
-<li *ngIf="hasRole(['ADMIN'])">
-  <a routerLink="/createUser" routerLinkActive="active">Create User</a>
-</li>
-
-      <li class="logout">
-        <a (click)="logout()">Logout</a>
-      </li>
-
-    </ul>
-
+  <!-- ✅ OVERLAY OUTSIDE -->
+  <div 
+    class="overlay" 
+    *ngIf="isCollapsed && ismobile" 
+    (click)="toggleSidebar()">
   </div>
+
+  <!-- Sidebar -->
+  <aside class="sidebar" [class.collapsed]="isCollapsed">
+
+    <div class="logo">
+      <span class="logo-icon">💼</span>
+      <span class="logo-text">Interview App</span>
+    </div>
+
+    <nav class="menu">
+      <ul>
+
+        <li *ngIf="hasRole(['ADMIN'])">
+          <a routerLink="/admin" (click)="closeSidebar()" routerLinkActive="active">
+            <i class="fa fa-chart-line"></i>
+            <span>Admin Dashboard</span>
+          </a>
+        </li>
+
+        <li *ngIf="hasRole(['HR'])">
+          <a routerLink="/hr" (click)="closeSidebar()" routerLinkActive="active">
+            <i class="fa fa-user-tie"></i>
+            <span>HR Dashboard</span>
+          </a>
+        </li>
+
+        <li *ngIf="hasRole(['PANEL'])">
+          <a routerLink="/panel" (click)="closeSidebar()" routerLinkActive="active">
+            <i class="fa fa-users"></i>
+            <span>Panel Dashboard</span>
+          </a>
+        </li>
+
+        <li *ngIf="hasRole(['ADMIN','HR'])">
+          <a routerLink="/candidate-list" (click)="closeSidebar()" routerLinkActive="active">
+            <i class="fa fa-id-badge"></i>
+            <span>Candidate List</span>
+          </a>
+        </li>
+
+        <li *ngIf="hasRole(['ADMIN'])">
+          <a routerLink="/createUser" (click)="closeSidebar()" routerLinkActive="active">
+            <i class="fa fa-user-plus"></i>
+            <span>Create User</span>
+          </a>
+        </li>
+
+      </ul>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button class="logout-btn" (click)="logout()">
+        <i class="fa fa-sign-out-alt"></i>
+        <span>Logout</span>
+      </button>
+    </div>
+
+  </aside>
 
   <!-- Content -->
-  <div class="content">
-    <router-outlet></router-outlet>
-  </div>
+  <main class="content">
+    <header class="topbar">
+      <button class="menu-btn" (click)="toggleSidebar()">☰</button>
+
+      <div class="topbar-right">
+        <span class="welcome">Welcome 👋</span>
+        <app-profileview></app-profileview>
+      </div>
+    </header>
+
+    <section class="page">
+      <router-outlet></router-outlet>
+    </section>
+  </main>
 
 </div>

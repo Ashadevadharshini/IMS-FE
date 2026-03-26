@@ -1,0 +1,50 @@
+<div class="profile-page">
+
+  <!-- Header -->
+  <div class="profile-card">
+
+    <div class="profile-top">
+
+      <div class="avatar big">
+        {{ user?.name?.charAt(0) || 'U' }}
+      </div>
+
+      <div class="info">
+        <h2>{{ user?.name }}</h2>
+        <p>{{ user?.email }}</p>
+        <span class="role">
+  {{ roleText }}
+</span>
+      </div>
+
+    </div>
+
+    <!-- Details -->
+    <div class="details">
+
+      <div class="detail-item">
+        <label>Employee ID</label>
+        <span>{{ user?.employeeId }}</span>
+      </div>
+
+      <div class="detail-item">
+        <label>Phone</label>
+        <span>{{ user?.phoneNumber || 'Not provided' }}</span>
+      </div>
+
+      <div class="detail-item">
+        <label>Department</label>
+        <span>{{ user?.department || 'Not assigned' }}</span>
+      </div>
+
+    </div>
+
+    <!-- Actions -->
+    <div class="actions">
+      <button class="btn primary">Edit Profile</button>
+      <button class="btn secondary">Change Password</button>
+    </div>
+
+  </div>
+
+</div>
