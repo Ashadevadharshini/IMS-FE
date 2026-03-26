@@ -1,0 +1,89 @@
+/* Page wrapper (add this class in parent or body) */
+.page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(to right, #eef2f3, #dfe9f3);
+}
+
+/* Form container */
+.form-container {
+  width: 100%;
+  max-width: 420px;
+  background: #ffffff;
+  padding: 30px 25px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading */
+.form-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Form group */
+.form-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Labels */
+.form-group label {
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: #555;
+}
+
+/* Inputs & Select */
+.form-group input,
+.form-group select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+/* Focus */
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #4a90e2;
+  outline: none;
+  box-shadow: 0 0 5px rgba(74, 144, 226, 0.3);
+}
+
+/* Button */
+button {
+  width: 100%;
+  padding: 12px;
+  background: #4a90e2;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+/* Hover */
+button:hover {
+  background: #357abd;
+}
+
+/* Disabled */
+button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+  .form-container {
+    padding: 20px;
+  }
+}

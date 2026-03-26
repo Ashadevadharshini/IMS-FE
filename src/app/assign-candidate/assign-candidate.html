@@ -1,0 +1,71 @@
+<div class="container">
+  <h2>Candidate List</h2>
+
+  <table border="1" width="100%">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let candidate of candidates">
+        <td>{{ candidate.name }}</td>
+        <td>{{ candidate.email }}</td>
+        <td>{{ candidate.status }}</td>
+        <td>
+          <button (click)="openAssignPopup(candidate)">Assign</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+ <div class="modal" *ngIf="showPopup">
+  <div class="modal-content">
+    <h3>Assign Interview</h3>
+
+    <label>Select Interviewer:</label>
+    <select [(ngModel)]="selectedInterviewerId" (change)="onInterviewerChange()">
+      <option value="">--Select--</option>
+      <option *ngFor="let interviewer of interviewers" [value]="interviewer.id">
+        {{ interviewer.name }}
+      </option>
+    </select>
+    <!-- <label>Select Interviewer:</label>
+<select [(ngModel)]="selectedInterviewerId" 
+        (click)="loadInterviewers()"  
+        (change)="onInterviewerChange()">
+  <option value="">--Select--</option>
+  <option *ngFor="let interviewer of interviewers" [value]="interviewer.id">
+    {{ interviewer.name }}
+  </option>
+</select> -->
+
+    <div *ngIf="availableDates.length > 0">
+      <h4>Select Date:</h4>
+      <div class="calendar">
+        <div 
+          class="date-box"
+          *ngFor="let date of availableDates"
+          [class.active]="date === selectedDate"
+          (click)="selectDate(date)">
+          {{ date }}
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="availableSlots.length > 0">
+      <h4>Available Slots:</h4>
+      <button *ngFor="let slot of availableSlots"
+              (click)="assignInterview(slot)">
+        {{ slot }}
+      </button>
+    </div>
+
+    <button class="close-btn" (click)="closePopup()">Close</button>
+  </div>
+</div> 

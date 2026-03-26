@@ -9,6 +9,8 @@ import { authGuard } from './guards/auth-guard';
 import { CreateUser } from './create-user/create-user';
 import { CandidateList } from './candidate-list/candidate-list';
 import { Profile } from './profile/profile';
+import { InterviewerForm } from './interviewer-form/interviewer-form';
+import { AssignCandidate } from './assign-candidate/assign-candidate';
 
 export const routes: Routes = [
 
@@ -22,13 +24,10 @@ export const routes: Routes = [
     canActivate: [authGuard],
     children: [
 
-      // 🔥 DEFAULT REDIRECT (can change later for role-based)
       { path: '', redirectTo: 'profile', pathMatch: 'full' },
 
-      // ✅ PROFILE (no need authGuard again)
       { path: 'profile', component: Profile },
 
-      // ✅ ADMIN
       { 
         path: 'admin', 
         component: AdminDashboard, 
@@ -36,20 +35,37 @@ export const routes: Routes = [
         data: { roles: ['ADMIN'] } 
       },
 
-      // ✅ HR
       { 
         path: 'hr', 
         component: HrDashboard, 
         canActivate: [roleGuard], 
         data: { roles: ['HR'] }
       },
+      {
+        path:'panel',
+        component:HrDashboard,
+        canActivate:[roleGuard],
+        data:{roles:['PANEL']}
+      },
       
-      // ✅ COMMON
       {
         path: 'candidate-list',
         component: CandidateList,
         canActivate: [roleGuard],
         data: { roles: ['HR', 'ADMIN'] }
+      },
+      {
+        path:'addPanel',
+        component:InterviewerForm,
+        canActivate:[roleGuard],
+        data:{roles:['PANEL']}
+      },
+
+      {
+        path:'assignCandidate',
+        component:AssignCandidate,
+        canActivate:[roleGuard],
+        data:{roles:['HR']}
       },
 
       {
@@ -59,17 +75,18 @@ export const routes: Routes = [
         data: { roles: ['CANDIDATE'] }
       },
 
-      {
-        path: 'createUser',
-        component: CreateUser,
-        canActivate: [roleGuard],
-        data: { roles: ['ADMIN'] }
-      }
+      { 
+        path: 'createUser', 
+        component: CreateUser, 
+        canActivate: [roleGuard], 
+        data: { roles: ['ADMIN'] } 
+      },
+
 
     ]
   },
 
-  // ❌ INVALID ROUTE
+ 
   { path: '**', redirectTo: 'login' }
 
 ];
