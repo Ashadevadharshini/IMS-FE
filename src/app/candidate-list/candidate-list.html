@@ -1,43 +1,122 @@
-<div class="container">
+<div class="page">
 
-  <h2>Upload Candidate Excel</h2>
+  <!-- TOAST -->
+  <div class="toast" *ngIf="message">
+    {{ message }}
+  </div>
 
-  <input 
-    type="file" 
-    (change)="onFileChange($event)" 
-    accept=".xlsx, .xls" 
-  />
+  <!-- HEADER -->
+  <div class="page-header">
+    <h2>Candidate Management</h2>
 
-  <p>Total Candidates: {{ candidates.length }}</p>
+    <div class="upload-section">
+      <label class="upload-box">
+        📂 Choose Excel File
+        <input type="file" #fileInput (change)="onFileChange($event)" accept=".xlsx, .xls" hidden />
+      </label>
 
-<table *ngIf="candidates && candidates.length > 0">
-    <thead>
-      <tr>
-        <th>S.NO</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Phone Number</th>
-        <th>Skill</th>
-        <th>Degree</th>
-        <th>Experience</th>
-        <th>Status</th>
-      </tr>
-    </thead>
+      <div class="file-name" *ngIf="selectedFileName">
+        {{ selectedFileName }}
+      </div>
+    </div>
+  </div>
 
-    <tbody>
-  
-  <tr *ngFor="let c of candidates; let i = index">
-    <td>{{ i + 1 }}</td>
-    <td>{{ c.name }}</td>
-    <td>{{ c.email }}</td>
-    <td>{{ c.phone }}</td>
-    <td>{{ c.skill }}</td>
-    <td>{{ c.degree }}</td>
-    <td>{{ c.experience }}</td>
-    <td>{{ c.status }}</td>
-  </tr>
-</tbody>
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat-card">
+      Total Candidates: <strong>{{ candidates.length }}</strong>
+    </div>
+  </div>
 
-  </table>
+  <!-- LOADING -->
+  <div *ngIf="loading" class="loading">Loading...</div>
+
+  <!-- EMPTY -->
+  <div *ngIf="!loading && candidates.length === 0" class="empty">
+    No candidates found 📭
+  </div>
+
+  <!-- TABLE -->
+  <div class="table-card" *ngIf="!loading && candidates.length > 0">
+
+    <div class="table-wrapper">
+
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Skill</th>
+            <th>Status</th>
+            <th>Level</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let c of candidates; trackBy: trackById">
+
+            <td>{{ c.candidateId }}</td>
+
+            <td>
+              <ng-container *ngIf="editingId === c.id; else viewName">
+                <input [(ngModel)]="editCandidate!.name">
+              </ng-container>
+              <ng-template #viewName>{{ c.name }}</ng-template>
+            </td>
+
+            <td>
+              <ng-container *ngIf="editingId === c.id; else viewEmail">
+                <input [(ngModel)]="editCandidate!.email">
+              </ng-container>
+              <ng-template #viewEmail>{{ c.email }}</ng-template>
+            </td>
+
+            <td>
+              <ng-container *ngIf="editingId === c.id; else viewPhone">
+                <input [(ngModel)]="editCandidate!.phone">
+              </ng-container>
+              <ng-template #viewPhone>{{ c.phone }}</ng-template>
+            </td>
+
+            <td>
+              <ng-container *ngIf="editingId === c.id; else viewSkill">
+                <input [(ngModel)]="editCandidate!.skill">
+              </ng-container>
+              <ng-template #viewSkill>{{ c.skill }}</ng-template>
+            </td>
+
+            <td>
+              <span class="status" [ngClass]="c.status">
+                {{ c.status }}
+              </span>
+            </td>
+
+            <td>
+              <span class="level" [ngClass]="c.level"> 
+                 {{c.level}}
+              </span>
+            </td>
+
+            <td class="actions">
+              <ng-container *ngIf="editingId === c.id; else normal">
+                <button class="btn save" [disabled]="isSaving" (click)="updateCandidate()">✔</button>
+                <button class="btn cancel" (click)="cancelEdit()">✕</button>
+              </ng-container>
+
+              <ng-template #normal>
+                <button class="btn edit" (click)="edit(c)">✏</button>
+                <button class="btn delete" (click)="deleteCandidates(c.id)">🗑</button>
+              </ng-template>
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
 
 </div>
