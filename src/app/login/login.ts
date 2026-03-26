@@ -24,46 +24,38 @@ export class Login {
   });
   }
   
-
-  login(){
+login() {
 
   if(this.loginForm.invalid){
     return;
   }
 
-  const formValue = this.loginForm.value;
-
-const data = {
-  email: formValue.email,   // ✅ correct key
-  password: formValue.password
-};
+  const data = this.loginForm.value;
 
   this.auth.login(data).subscribe({
     next: (res:any) => {
 
       console.log("SUCCESS:", res);
 
-      if(!res || !res.role){
-        alert("Invalid credentials");
-        return;
-      }
-
       this.auth.saveUser(res);
 
-      if(res.role === 'ADMIN'){
-  console.log("Navigating to ADMIN...");
-  this.router.navigate(['/admin']).then(result => {
-    console.log("Navigation result:", result);
-  });
-} else if(res.role === 'HR'){
+      const role = res.role;
+
+      if(role === 'ADMIN'){
+        this.router.navigate(['/admin']);
+      } 
+      else if(role === 'HR'){
         this.router.navigate(['/hr']);
-      } else {
-        this.router.navigate(['/panel']);
+      } 
+      else if(role === 'CANDIDATE'){
+        this.router.navigate(['/candidate']);
+      } 
+      else {
+        this.router.navigate(['/login']);
       }
 
     },
-    error: (err) => {
-      console.log("ERROR:", err);
+    error: () => {
       alert("Invalid credentials");
     }
   });

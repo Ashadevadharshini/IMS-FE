@@ -9,47 +9,54 @@
       <div class="grid">
 
         <!-- NAME -->
-        <div class="input-group">
-          <input type="text" formControlName="name" placeholder=" " required>
-          <label>Name</label>
+        <div class="two-div">
 
-          <small class="error"
-            *ngIf="userForm.get('name')?.invalid && (userForm.get('name')?.touched || userForm.get('name')?.dirty)">
 
-            <span *ngIf="userForm.get('name')?.errors?.['required']">
-              Name is required
-            </span>
-            <span *ngIf="userForm.get('name')?.errors?.['minlength']">
-              Minimum 3 characters required
-            </span>
-            <span *ngIf="userForm.get('name')?.errors?.['pattern']">
-              Only letters allowed
-            </span>
+          <div class="input-group">
+            
+              <input type="text" formControlName="name" placeholder="name" required>
+              <label>Name</label>
+            
 
-          </small>
-        </div>
+            <small class="error"
+              *ngIf="userForm.get('name')?.invalid && (userForm.get('name')?.touched || userForm.get('name')?.dirty)">
 
-        <!-- EMPLOYEE ID -->
-        <div class="input-group">
-          <input type="text" formControlName="employeeId" placeholder=" " required>
-          <label>Employee ID</label>
+              <span *ngIf="userForm.get('name')?.errors?.['required']">
+                Name is required
+              </span>
+              <span *ngIf="userForm.get('name')?.errors?.['minlength']">
+                Minimum 3 characters required
+              </span>
+              <span *ngIf="userForm.get('name')?.errors?.['pattern']">
+                Only letters allowed
+              </span>
 
-          <small class="error"
-           *ngIf="userForm.get('employeeId')?.invalid && (userForm.get('employeeId')?.touched || userForm.get('employeeId')?.dirty)">
+            </small>
+          </div>
 
-            <span *ngIf="userForm.get('employeeId')?.errors?.['required']">
-              Employee ID is required
-            </span>
-            <span *ngIf="userForm.get('employeeId')?.errors?.['pattern']">
-              Enter valid ID (7 digits)
-            </span>
+          <!-- EMPLOYEE ID -->
+          <div class="input-group">
+           
+              <input type="text" formControlName="employeeId" placeholder="employeeId" required>
+              <label>Employee ID</label>
 
-          </small>
+            <small class="error"
+              *ngIf="userForm.get('employeeId')?.invalid && (userForm.get('employeeId')?.touched || userForm.get('employeeId')?.dirty)">
+
+              <span *ngIf="userForm.get('employeeId')?.errors?.['required']">
+                Employee ID is required
+              </span>
+              <span *ngIf="userForm.get('employeeId')?.errors?.['pattern']">
+                Enter valid ID (7 digits)
+              </span>
+
+            </small>
+          </div>
         </div>
 
         <!-- EMAIL -->
         <div class="input-group full">
-          <input type="email" formControlName="email" placeholder=" " required>
+          <input type="email" formControlName="email" placeholder="email" required class="email">
           <label>Email</label>
 
           <small class="error"
@@ -66,68 +73,67 @@
         </div>
 
         <!-- PHONE -->
-        <div class="input-group">
-          <input type="text" formControlName="phoneNumber" placeholder=" " required>
-          <label>Phone Number</label>
+        <div class="two-div">
+          <div class="input-group">
+            <input type="text" formControlName="phoneNumber" placeholder="phoneNumber" required>
+            <label>Phone Number</label>
 
-          <small class="error"
-            *ngIf="userForm.get('phoneNumber')?.touched && userForm.get('phoneNumber')?.invalid">
+            <small class="error" *ngIf="userForm.get('phoneNumber')?.touched && userForm.get('phoneNumber')?.invalid">
 
-            <span *ngIf="userForm.get('phoneNumber')?.errors?.['required']">
-              Phone number is required
-            </span>
-            <span *ngIf="userForm.get('phoneNumber')?.errors?.['pattern']">
-              Enter valid 10-digit number
-            </span>
+              <span *ngIf="userForm.get('phoneNumber')?.errors?.['required']">
+                Phone number is required
+              </span>
+              <span *ngIf="userForm.get('phoneNumber')?.errors?.['pattern']">
+                Enter valid 10-digit number
+              </span>
 
-          </small>
-        </div>
+            </small>
+          </div>
 
-        <!-- PASSWORD -->
-        <div class="input-group">
-          <input type="password" formControlName="password" placeholder=" " required>
-          <label>Password</label>
+          <!-- PASSWORD -->
+          <div class="input-group">
+            <input type="password" formControlName="password" placeholder="password" required>
+            <label>Password</label>
 
-          <small class="error"
-            *ngIf="userForm.get('password')?.touched && userForm.get('password')?.invalid">
+            <small class="error" *ngIf="userForm.get('password')?.touched && userForm.get('password')?.invalid">
 
-            <span *ngIf="userForm.get('password')?.errors?.['required']">
-              Password is required
-            </span>
-            <span *ngIf="userForm.get('password')?.errors?.['minlength']">
-              Minimum 6 characters required
-            </span>
+              <span *ngIf="userForm.get('password')?.errors?.['required']">
+                Password is required
+              </span>
+              <span *ngIf="userForm.get('password')?.errors?.['minlength']">
+                Minimum 6 characters required
+              </span>
 
-          </small>
+            </small>
+          </div>
         </div>
 
         <!-- ROLE -->
         <div class="input-group full">
-          <select formControlName="role">
+          <select formControlName="role" class="full">
             <option value="" disabled>Select Role</option>
             <option value="ADMIN">ADMIN</option>
             <option value="HR">HR</option>
             <option value="PANEL">PANEL</option>
           </select>
-    
 
-          <small class="error"
-            *ngIf="userForm.get('role')?.touched && userForm.get('role')?.invalid">
+
+          <small class="error" *ngIf="userForm.get('role')?.touched && userForm.get('role')?.invalid">
             Role is required
           </small>
         </div>
 
       </div>
 
-     <div class="button-group">
-  <button type="submit" [disabled]="userForm.invalid">
-    Create User
-  </button>
+      <div class="button-group">
+        <button type="submit" [disabled]="userForm.invalid">
+          Create User
+        </button>
 
-  <button type="button" class="reset-btn" (click)="resetForm()">
-    Reset
-  </button>
-</div>
+        <button type="button" class="reset-btn" (click)="resetForm()">
+          Reset
+        </button>
+      </div>
 
     </form>
 

@@ -1,0 +1,47 @@
+<div class="profile-wrapper">
+
+  <!-- Avatar -->
+  <div class="avatar" (click)="toggleProfile()">
+    {{ user?.name?.charAt(0) || 'U' }}
+  </div>
+
+  <!-- Dropdown -->
+  <div class="profile-dropdown" *ngIf="showProfile">
+
+    <!-- Header -->
+    <div class="profile-header">
+
+      <div class="avatar big">
+        {{ user?.name?.charAt(0) || 'U' }}
+      </div>
+
+      <div class="user-info">
+        <h4>{{ user?.name }}</h4>
+        <p>{{ user?.email }}</p>
+        <span class="emp-id">ID: {{ user?.employeeId }}</span>
+      </div>
+
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Actions -->
+    <div class="actions">
+
+      <button class="action-btn" (click)="goToProfile()">
+        <i class="fa fa-user"></i> Profile
+      </button>
+
+      <button class="action-btn">
+        <i class="fa fa-cog"></i> Settings
+      </button>
+
+      <button class="action-btn logout" (click)="logout()">
+        <i class="fa fa-sign-out-alt"></i> Logout
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
