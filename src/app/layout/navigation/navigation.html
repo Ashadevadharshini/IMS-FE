@@ -1,13 +1,11 @@
 <div class="layout">
 
-  <!-- ✅ OVERLAY OUTSIDE -->
   <div 
     class="overlay" 
     *ngIf="isCollapsed && ismobile" 
     (click)="toggleSidebar()">
   </div>
 
-  <!-- Sidebar -->
   <aside class="sidebar" [class.collapsed]="isCollapsed">
 
     <div class="logo">
@@ -52,6 +50,19 @@
             <span>Create User</span>
           </a>
         </li>
+         <li *ngIf="hasRole(['HR'])">
+          <a routerLink="/assignCandidate" (click)="closeSidebar()" routerLinkActive="active">
+            <i class="fa fa-user-plus"></i>
+            <span>Assign Interview</span>
+          </a>
+        </li>
+        <li *ngIf="hasRole(['PANEL'])">
+          <a routerLink="/addPanel" (click)="closeSidebar()" routerLinkActive="active">
+            <i class="fa fa-user-plus"></i>
+            <span>Add Panel</span>
+          </a>
+        </li>
+        
 
       </ul>
     </nav>

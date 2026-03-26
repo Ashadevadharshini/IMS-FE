@@ -1,0 +1,45 @@
+<div class="page-container">
+
+<div class="form-container">
+  <h2>Add Interviewer</h2>
+
+  <form #interviewerForm="ngForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <label>Name</label>
+      <input type="text" name="name" [(ngModel)]="interviewer.name" required />
+    </div>
+
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" name="email" [(ngModel)]="interviewer.email" required />
+    </div>
+
+    <div class="form-group">
+      <label>Tech Domain</label>
+      <select name="techDomain" [(ngModel)]="interviewer.techDomain" required>
+        <option value="">Select Domain</option>
+        <option value="Java">Java</option>
+        <option value="Angular">Angular</option>
+        <option value="FullStack">Full Stack</option>
+        <option value="DevOps">DevOps</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Designation</label>
+      <input type="text" name="designation" [(ngModel)]="interviewer.designation" />
+    </div>
+
+    <div class="form-group">
+      <label>Meeting Link</label>
+      <input type="text" name="meetingLink" [(ngModel)]="interviewer.meetingLink" />
+    </div>
+
+    <button type="submit" [disabled]="!interviewerForm.valid">
+      Save Interviewer
+    </button>
+
+  </form>
+</div>
+</div>
